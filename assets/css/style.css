@@ -1,0 +1,127 @@
+/* Personalización de estilos */
+body {
+    background-image: url('/assets/img/walppaper1.jpg');
+    font-family: 'Arial', sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.logoImg{
+    
+    margin-left: 50px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: solid rgb(197, 82, 217) 5px;
+}
+#navbar-top {
+    background-color: rosybrown;
+    background-image: url('/assets/img/bannerNavbar.jpg');
+}
+
+#navbar-chat {
+    background-color: #b39eaf;
+    border: solid black 1px;
+}
+
+#ChatEvil {
+    font-family: "Crafty Girls", cursive;
+    font-weight: bold;
+}
+
+#TextoChat {
+    font-family: "The Girl Next Door", cursive;
+    font-weight: bold;
+    color: purple;
+}
+
+
+.unread .contact-name {
+    font-weight: bold;
+}
+
+
+.contact-name {
+    font-weight: normal;
+}
+
+
+.chat-list {
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 1px solid #dee2e6;
+}
+
+.chat-box {
+    height: 100vh;
+    color: black;
+}
+
+.messages {
+    background-color: #f1f3f5;
+    border-radius: 8px;
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.message-content {
+    display: inline-block;
+    max-width: 80%; 
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: solid 2px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+    background-color: #B39EAF;
+}
+
+li:hover {
+    background-color: #B39EAF;
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+    
+    border-top: 5px solid red;
+    border-bottom: 5px solid red;
+}
+
+/* Footer */
+#footer-main {
+    background-color: rosybrown;
+    background-image: url('/assets/img/bannerNavbar.jpg');
+}
+
+
+@media (max-width: 500px) {
+    #chatBox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1050; 
+        background-color: white; 
+        overflow: hidden; 
+    }
+    
+    .chat-list {
+        display: none; 
+    }
+
+    #message-container {
+        overflow-y: auto; 
+        height: calc(100% - 60px); 
+    }
+}

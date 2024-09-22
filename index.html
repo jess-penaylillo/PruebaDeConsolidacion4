@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Comunicación - Chat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crafty+Girls&family=The+Girl+Next+Door&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar-top">
+        <div class="container-fluid">
+            <img src="assets/img/logoBG.jpg" class="rounded-circle logoImg" alt="Logo Evil Book">
+            <a class="navbar-brand" href="#" id="ChatEvil">Chat Evil Book</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="calendario">Calendario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="evilBook">Evil Book</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="preguntas">Preguntas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container mt-3" >
+        <div class="row">
+            <!-- Lista de conversaciones -->
+            <aside class="fondoChat col-lg-4 col-md-5 chat-list bg-light p-3 d-none d-md-block" id="contactList">
+                <input type="text" class="form-control mb-3" id="search" placeholder="Buscar conversaciones...">
+                <ul class="list-group" id="conversations">
+                    <!-- Lista de contactos -->
+                    <li class="list-group-item d-flex align-items-center unread"  onclick="showChat('cady'); this.classList.remove('unread');">
+                        <img src="assets/img/Cady.jpg" alt="Foto de perfil Cady" class="profile-pic me-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <span class="contact-name">Cady Heron</span>
+                                <span class="text-muted small">10:45 AM</span>
+                            </div>
+                            
+                            <p class="mb-0 small text-muted">Gracias, Ms. Norbury aprecio mucho su apoyo</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center unread" onclick="showChat('regina'); this.classList.remove('unread');">
+                        <img src="assets/img/Regina.jpg" alt="Foto de perfil Regina" class="profile-pic me-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <span class="contact-name">Regina George</span>
+                                <span class="text-muted small">9:30 AM</span>
+                            </div>
+                            <p class="mb-0 small text-muted">Lo siento, profesora. No me di cuenta de que era tan serio
+                            </p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center unread" onclick="showChat('gretchen')">
+                        <img src="assets/img/grechen.png" alt="Foto de perfil Gretchen" class="profile-pic me-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <span class="contact-name">Gretchen Wieners</span>
+                                <span class="text-muted small">11:20 AM</span>
+                            </div>
+                            <p class="mb-0 small text-muted">Solo queria decirle que su clase es, totalmente fabulosa
+                            </p>
+                        </div>
+                    </li>
+                    <!-- Lista de nuevos personajes -->
+                    <li class="list-group-item d-flex align-items-center unread" onclick="showChat('aaron')">
+                        <img src="assets/img/Aaron.png" alt="Foto de perfil Aaron" class="profile-pic me-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <span class="contact-name">Aaron Samuels</span>
+                                <span class="text-muted small">12:15 PM</span>
+                            </div>
+                            <p class="mb-0 small text-muted">Gracias por hacer que las clases sean tan interesantes</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center unread" onclick="showChat('janis')">
+                        <img src="assets/img/janis.jpg" alt="Foto de perfil Janis" class="profile-pic me-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <span class="contact-name">Janis Ian</span>
+                                <span class="text-muted small">1:05 PM</span>
+                            </div>
+                            <p class="mb-0 small text-muted">Aveces siento que no encajo en este lugar 😒</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center unread" onclick="showChat('damian')">
+                        <img src="assets/img/Damian.png" alt="Foto de perfil Damian" class="profile-pic me-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <span class="contact-name">Damian Leigh</span>
+                                <span class="text-muted small">2:30 PM</span>
+                            </div>
+                            <p class="mb-0 small text-muted">Debería tener su propio reality show 😍</p>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Caja de chat -->
+            <section class="col-lg-8 col-md-7 chat-box d-flex flex-column bg-white p-3" id="chatBox">
+                <!-- Chat de Cady -->
+                <div id="cady-chat" class="chat-content">
+                    <header id="navbar-chat"
+                        class="d-flex align-items-center text-white p-2 rounded justify-content-start">
+                        <img src="assets/img/Cady.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                        <h5 class="mb-0">Cady Heron</h5>
+                        <button class="btn btn-outline-secondary d-md-none ms-auto" id="backToContacts" onclick="showContacts()">⬅️</button>
+                    </header>
+                    <div class="messages flex-grow-1 overflow-auto p-3 mt-3 overflow-y-scroll" id="cady-messages" style="max-height: 400px;">
+                        <div class="d-flex justify-content-start mb-3">
+                            <img src="assets/img/Cady.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                            <div class="flex-grow-1">
+                                <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">
+                                    Hola, profesora Norbury. Solo quería agradecerle por su apoyo. Realmente me ayudó a
+                                    adaptarme cuando llegué a la escuela.</p>
+                                <small class="text-muted">10:45 AM</small>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end mb-3">
+                            <div class="flex-grow-1 text-end">
+                                <p class="mb-0 bg-primary text-white p-2 rounded message-content"> ¡Hola, Cady! Me
+                                    alegra escuchar eso. Sé que no es fácil ser la nueva chica, pero has hecho un gran
+                                    trabajo. ¿Cómo te sientes ahora?</p>
+                                <img class="rounded-circle border border-dark" src="assets/img/Profesora.jpg" alt=""
+                                    width="50" height="50">
+                                <small class="text-muted">10:46 AM</small>
+                            </div>
+                        </div>
+                        <!-- Tercer mensaje -->
+                        <div class="d-flex justify-content-start mb-3">
+                            <img src="assets/img/Cady.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                            <div class="flex-grow-1">
+                                <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">
+                                    Hola, Ms. Norbury. ¿Tiene un momento para hablar?</p>
+                                <small class="text-muted">10:45 AM</small>
+                            </div>
+                        </div>
+                        <!-- Cuarto mensaje -->
+                        <div class="flex-grow-1 text-end">
+                            <p class="mb-0 bg-primary text-white p-2 rounded message-content">Claro, dime Cady. ¿En
+                                qué te puedo ayudar?</p>
+                            <img class="rounded-circle border border-dark" src="assets/img/Profesora.jpg" alt=""
+                                width="50" height="50">
+                            <small class="text-muted">10:46 AM</small>
+                        </div>
+                        <!-- Quinto mensaje -->
+                        <div class="d-flex justify-content-start mb-3">
+                            <img src="assets/img/Cady.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                            <div class="flex-grow-1">
+                                <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">
+                                    Mucho mejor, gracias. He aprendido mucho, no solo en sus clases, sino también sobre mí misma y sobre cómo ser una mejor amiga.</p>
+                                <small class="text-muted">10:45 AM</small>
+                            </div>
+                        </div>
+                        <!-- Sexto mensaje -->
+                        
+                        <div class="flex-grow-1 text-end">
+                            <p class="mb-0 bg-primary text-white p-2 rounded message-content">Buenísimo Cady, sigue asi. !!😁👌</p>
+                            <img class="rounded-circle border border-dark" src="assets/img/Profesora.jpg" alt=""
+                                width="50" height="50">
+                            <small class="text-muted">10:46 AM</small>
+                        </div>
+
+                        </div>
+                        <!-- Input de mensaje -->
+                        <div class="input-group mt-3">
+                            <!-- Activador del dropdown -->
+                            <button class="btn btn-outline-secondary" type="button" id="attach"
+                                data-bs-toggle="dropdown" aria-expanded="false">📎</button>
+
+                            <!-- Dropdown de opciones -->
+                            <ul class="dropdown-menu" aria-labelledby="attach">
+                                <li><button class="dropdown-item" id="attach-image">Imagen</button></li>
+                                <li><button class="dropdown-item" id="attach-video">Video</button></li>
+                                <li><button class="dropdown-item" id="attach-document">Documento</button></li>
+                            </ul>
+                            <input type="text" class="form-control" id="cady-input" placeholder="Escribe un mensaje...">
+                            <button class="btn btn-primary" onclick="sendMessage('cady')">Enviar</button>
+                        </div>
+                    </div>
+
+                    <!-- Chat de Regina -->
+                    <div id="regina-chat" class="chat-content d-none">
+                        <header id="navbar-chat"
+                            class="d-flex align-items-center text-white p-2 rounded justify-content-start">
+                            <img src="assets/img/Regina.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                            <h5 class="mb-0">Regina George</h5>
+                        </header>
+                        <!--Primer mensaje-->
+                        <div class="messages flex-grow-1 overflow-auto p-3 mt-3" id="regina-messages">
+                            <div class="d-flex justify-content-start mb-3">
+                                <img src="assets/img/Profesora.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                                <div class="flex-grow-1">
+                                    <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">Regina,
+                                        necesito
+                                        hablar contigo sobre tu último trabajo de investigación
+                                    </p>
+                                    <small class="text-muted">9:30 AM</small>
+                                </div>
+                            </div>
+                            <!--Segundo mensaje-->
+                            <div class="d-flex justify-content-end mb-3">
+                                <div class="flex-grow-1 text-end">
+                                    <p class="mb-0 bg-primary text-white p-2 rounded message-content">¿Qué pasa,
+                                        profesora?
+                                        ¿No le gustó?</p>
+                                    <img class="rounded-circle border border-dark" src="assets/img/regina.jpg" alt=""
+                                        width="50" height="50">
+                                    <small class="text-muted">9:44 AM</small>
+                                </div>
+                        </div>
+                        <!--Tercer mensaje-->
+                        <div class="messages flex-grow-1 overflow-auto p-3 mt-3" id="regina-messages">
+                            <div class="d-flex justify-content-start mb-3">
+                                <img src="assets/img/Profesora.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                                <div class="flex-grow-1">
+                                    <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">No es eso,
+                                        Regina.
+                                        Me preocupa que gran parte de tu trabajo parece haber sido copiado de internet
+                                        sin
+                                        las debidas citas
+                                    </p>
+                                    <small class="text-muted">9:50 AM</small>
+                                </div>
+                        </div>
+                        <!--Cuarto mensaje-->
+                        <div class="d-flex justify-content-end mb-3">
+                            <div class="flex-grow-1 text-end">
+                                <p class="mb-0 bg-primary text-white p-2 rounded message-content">Oh, eso… Bueno,
+                                    encontré
+                                    mucha información útil y pensé que sería más fácil así</p>
+                                <img class="rounded-circle border border-dark" src="assets/img/regina.jpg" alt=""
+                                    width="50" height="50">
+                                <small class="text-muted">10:20 AM</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group mt-3">
+                    <!-- Activador del dropdown -->
+                    <button class="btn btn-outline-secondary" type="button" id="attach" data-bs-toggle="dropdown"
+                        aria-expanded="false">📎</button>
+
+                    <!-- Dropdown de opciones -->
+                    <ul class="dropdown-menu" aria-labelledby="attach">
+                        <li><button class="dropdown-item" id="attach-image">Imagen</button></li>
+                        <li><button class="dropdown-item" id="attach-video">Video</button></li>
+                        <li><button class="dropdown-item" id="attach-document">Documento</button></li>
+                    </ul>
+                    <input type="text" class="form-control" id="regina-input" placeholder="Escribe un mensaje...">
+                    <button class="btn btn-primary" onclick="sendMessage('regina')">Enviar</button>
+                </div>
+        </div>
+
+        <!-- Chat de Gretchen -->
+        <div id="gretchen-chat" class="chat-content d-none">
+            <header id="navbar-chat" class="d-flex align-items-center text-white p-2 rounded justify-content-start">
+                <img src="assets/img/grechen.png" alt="Foto de perfil" class="profile-pic me-3">
+                <h5 class="mb-0">Gretchen Wieners</h5>
+            </header>
+            <div class="messages flex-grow-1 overflow-auto p-3 mt-3" id="gretchen-messages">
+                <div class="d-flex justify-content-start mb-3">
+                    <img src="assets/img/grechen.png" alt="Foto de perfil" class="profile-pic me-3">
+                    <div class="flex-grow-1">
+                        <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">Tiene un momento para hablar?</p>
+                        <small class="text-muted">11:20 AM</small>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mb-3">
+                    <div class="flex-grow-1 text-end">
+                        <p class="mb-0 bg-primary text-white p-2 rounded message-content">¿De qué hablas,
+                            Gretchen?</p>
+                        <small class="text-muted">11:21 AM</small>
+                    </div>
+                </div>
+                <!-- Input de mensaje -->
+            <div class="input-group mt-3">
+                <!-- Activador del dropdown -->
+                <button class="btn btn-outline-secondary" type="button" id="attach" data-bs-toggle="dropdown"
+                    aria-expanded="false">📎</button>
+
+                <!-- Dropdown de opciones -->
+                <ul class="dropdown-menu" aria-labelledby="attach">
+                    <li><button class="dropdown-item" id="attach-image">Imagen</button></li>
+                    <li><button class="dropdown-item" id="attach-video">Video</button></li>
+                    <li><button class="dropdown-item" id="attach-document">Documento</button></li>
+                </ul>
+                <input type="text" class="form-control" id="gretchen-input" placeholder="Escribe un mensaje...">
+                <button class="btn btn-primary" onclick="sendMessage('gretchen')">Enviar</button>
+            </div>
+        </div>
+
+        <!-- Chat de Aaron -->
+        <div id="aaron-chat" class="chat-content d-none">
+            <header id="navbar-chat" class="d-flex align-items-center text-white p-2 rounded justify-content-start">
+                <img src="assets/img/Aaron.png" alt="Foto de perfil" class="profile-pic me-3">
+                <h5 class="mb-0">Aaron Samuels</h5>
+            </header>
+            <div class="messages flex-grow-1 overflow-auto p-3 mt-3" id="aaron-messages">
+                <div class="d-flex justify-content-start mb-3">
+                    <img src="assets/img/Aaron.png" alt="Foto de perfil" class="profile-pic me-3">
+                    <div class="flex-grow-1">
+                        <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">¿Puedes ayudarme
+                            con las matemáticas?</p>
+                        <small class="text-muted">12:15 PM</small>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mt-3">
+                <!-- Activador del dropdown -->
+                <button class="btn btn-outline-secondary" type="button" id="attach" data-bs-toggle="dropdown"
+                    aria-expanded="false">📎</button>
+
+                <!-- Dropdown de opciones -->
+                <ul class="dropdown-menu" aria-labelledby="attach">
+                    <li><button class="dropdown-item" id="attach-image">Imagen</button></li>
+                    <li><button class="dropdown-item" id="attach-video">Video</button></li>
+                    <li><button class="dropdown-item" id="attach-document">Documento</button></li>
+                </ul>
+                <input type="text" class="form-control" id="aaron-input" placeholder="Escribe un mensaje...">
+                <button class="btn btn-primary" onclick="sendMessage('aaron')">Enviar</button>
+            </div>
+        </div>
+
+        <!-- Chat de Janis -->
+        <div id="janis-chat" class="chat-content d-none">
+            <header id="navbar-chat" class="d-flex align-items-center text-white p-2 rounded justify-content-start">
+                <img src="assets/img/janis.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                <h5 class="mb-0">Janis Ian</h5>
+            </header>
+            <div class="messages flex-grow-1 overflow-auto p-3 mt-3" id="janis-messages">
+                <div class="d-flex justify-content-start mb-3">
+                    <img src="assets/img/janis.jpg" alt="Foto de perfil" class="profile-pic me-3">
+                    <div class="flex-grow-1">
+                        <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">Nos vemos en el
+                            almuerzo...</p>
+                        <small class="text-muted">1:05 PM</small>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mt-3">
+                <!-- Activador del dropdown -->
+                <button class="btn btn-outline-secondary" type="button" id="attach" data-bs-toggle="dropdown"
+                    aria-expanded="false">📎</button>
+
+                <!-- Dropdown de opciones -->
+                <ul class="dropdown-menu" aria-labelledby="attach">
+                    <li><button class="dropdown-item" id="attach-image">Imagen</button></li>
+                    <li><button class="dropdown-item" id="attach-video">Video</button></li>
+                    <li><button class="dropdown-item" id="attach-document">Documento</button></li>
+                </ul>
+                <input type="text" class="form-control" id="janis-input" placeholder="Escribe un mensaje...">
+                <button class="btn btn-primary" onclick="sendMessage('janis')">Enviar</button>
+            </div>
+        </div>
+
+        <!-- Chat de Damian -->
+        <div id="damian-chat" class="chat-content d-none">
+            <header id="navbar-chat" class="d-flex align-items-center text-white p-2 rounded justify-content-start">
+                <img src="assets/img/Damian.png" alt="Foto de perfil" class="profile-pic me-3">
+                <h5 class="mb-0">Damian Leigh</h5>
+            </header>
+            <div class="messages flex-grow-1 overflow-auto p-3 mt-3" id="damian-messages">
+                <div class="d-flex justify-content-start mb-3">
+                    <img src="assets/img/Damian.png" alt="Foto de perfil" class="profile-pic me-3">
+                    <div class="flex-grow-1">
+                        <p class="mb-0 bg-info-subtle text-black p-2 rounded message-content">¡Estás tan linda
+                            hoy!</p>
+                        <small class="text-muted">2:30 PM</small>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mt-3">
+                <!-- Activador del dropdown -->
+                <button class="btn btn-outline-secondary" type="button" id="attach" data-bs-toggle="dropdown"
+                    aria-expanded="false">📎</button>
+
+                <!-- Dropdown de opciones -->
+                <ul class="dropdown-menu" aria-labelledby="attach">
+                    <li><button class="dropdown-item" id="attach-image">Imagen</button></li>
+                    <li><button class="dropdown-item" id="attach-video">Video</button></li>
+                    <li><button class="dropdown-item" id="attach-document">Documento</button></li>
+                </ul>
+                <input type="text" class="form-control" id="damian-input" placeholder="Escribe un mensaje...">
+                <button class="btn btn-primary" onclick="sendMessage('damian')">Enviar</button>
+            </div>
+        </div>
+        <button class="btn btn-secondary mt-2" id="back-to-contacts">Volver a Contactos</button>
+
+        </section>
+    </div>
+    </div>
+
+    
+    <!-- footer-->
+    <footer class="text-dark p-3 text-center border-black" id="footer-main">
+        &copy; 2024 - Proyecto de Chat Multiusuario
+    </footer>
+
+    <script>
+        function showChat(chatId) {
+            const chats = document.querySelectorAll('.chat-content');
+            chats.forEach(chat => chat.classList.add('d-none'));
+            document.getElementById(`${chatId}-chat`).classList.remove('d-none');
+        }
+
+        function sendMessage(chatId) {
+            const input = document.getElementById(`${chatId}-input`);
+            const messageText = input.value.trim();
+            if (messageText) {
+                const messageContainer = document.createElement('div');
+                messageContainer.classList.add('d-flex', 'justify-content-end', 'mb-3');
+
+                const messageContent = `
+                    <div class="flex-grow-1 text-end">
+                        <p class="mb-0 bg-primary text-white p-2 rounded message-content">${messageText}</p>
+                        <small class="text-muted">Ahora mismo</small>
+                    </div>
+                `;
+                messageContainer.innerHTML = messageContent;
+                document.getElementById(`${chatId}-messages`).appendChild(messageContainer);
+                input.value = ''; // Limpiar el input después de enviar
+            }
+        }
+        
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/chat.js"></script>
+</body>
+
+</html>
